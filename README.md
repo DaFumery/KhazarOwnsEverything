@@ -1,13 +1,63 @@
-- echo "# KhazarOwnsEverything" >> README.md
+# KhazarOwnsEverything
 
-- git init
+credit : Jonas Schmedtmann
 
-- git add README.md
+## Table des matières
 
-- git commit -m "first commit"
+- [Bankist Flowchart](#bankist-flowchart)
+- [Manipulation du DOM](#manipulation-du-dom)
 
-- git branch -M main
+## Bankist Flowchart
 
-- git remote add origin https://github.com/DaFumery/KhazarOwnsEverything.git
+![Bankist Flowchart](Bankist-flowchart.png)
 
-- git push -u origin main
+## Manipulation du DOM
+
+### element.innerHTML
+
+La propriété Element.innerHTML de Element récupère ou définit la syntaxe HTML décrivant les descendants de l'élément.
+
+- On vide le contenu de initial de la div de class .movements.
+
+```js
+const displayMovements = function (movements) {
+// Vide le contenu de la balise de class .movements.
+containerMovements.innerHTML = '';
+```
+
+### Array.prototype.forEach()
+
+La méthode forEach() permet d'exécuter une fonction donnée sur chaque élément du tableau.
+
+On vérifie pour chaque élément du tableau movements, s'il s'agit d'une valeur positive (dépôt) ou d'une valeur négative (retrait).
+
+```js
+movements.forEach(function (mov, index) {
+// Vérifie s'il s'agit d'un dépôt ou d'un retrait
+const type = mov > 0 ? 'deposit' : 'withdrawal';
+```
+
+### Littéraux de gabarits
+
+Les littéraux de gabarits sont des littéraux de chaînes de caractères permettant d'intégrer des expressions.
+
+On insert des balises html dynamique grâce aux littéraux
+
+```js
+// Template Litteral pour intégrer chaque mouvement
+const html = `
+
+  <div class="movements__row">
+    <div class="movements__type movements__type--${type}">${index + 1} ${type}</div>
+    <div class="movements__value">${mov}€</div>
+  </div>`;
+```
+
+### element.insertAdjacentHTML
+
+insertAdjacentHTML() analyse le texte spécifié en tant que HTML ou XML et insère les noeuds résultants dans le DOM à la position spécifiée.
+
+```js
+// Insert le template litteral html
+containerMovements.insertAdjacentHTML('afterbegin', html);
+```

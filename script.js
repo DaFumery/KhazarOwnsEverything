@@ -61,6 +61,30 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements) {
+  // Vide le contenu de la balise de class .movements.
+  containerMovements.innerHTML = '';
+
+  // Loop forEach sur le tableau movements
+  movements.forEach(function (mov, index) {
+    // Vérifie s'il s'agit d'un dépôt ou d'un retrait
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    // Template Litteral pour intégrer chaque mouvement
+    const html = `
+  <div class="movements__row">
+    <div class="movements__type movements__type--${type}">${
+      index + 1
+    } ${type}</div>
+    <div class="movements__value">${mov}€</div>
+  </div>`;
+
+    // Insert le template litteral html
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -72,28 +96,3 @@ const currencies = new Map([
 ]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-/////// SLICE Méthod
-let arr = ['a', 'b', 'c', 'd', 'e'];
-
-// array.slice(start[i], end[i])
-console.log(arr.slice(2));
-console.log(arr.slice(2, 4));
-
-// Commence par la fin
-console.log(arr.slice(-1));
-console.log(arr.slice(-2));
-
-// start[i] = index[1] = 'b'
-// end[i] = index[-1] = ['c', 'd']
-console.log(arr.slice(1, -1));
-
-// SpreadOpérator
-console.log(...arr);
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-/////// SPLICE Méthod
-console.log(arr.splice(2));
