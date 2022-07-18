@@ -11,6 +11,7 @@ credit : Jonas Schmedtmann
   - [Littéraux de gabarits](#littéraux-de-gabarits)
   - [element.insertAdjacentHTML](#elementinsertadjacenthtml)
   - [Code complet](#code-complet)
+- []()
 
 ## Bankist Flowchart
 

@@ -2,9 +2,11 @@
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
-// BANKIST APP
+// KhazarOwnsEverything
 
-// Data
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+// DATA
 const account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
@@ -35,7 +37,10 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
-// Elements
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+// ELEMENTS
+
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
 const labelBalance = document.querySelector('.balance__value');
@@ -60,6 +65,10 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
+
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+// DISPLAY MOVEMENTS
 
 const displayMovements = function (movements) {
   // Vide le contenu de la balise de class .movements.
@@ -87,12 +96,18 @@ displayMovements(account1.movements);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
-// LECTURES
+// USERNAME GESTION
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      // Créer un nouveau tableau contenant les initiales des noms
+      .map(name => name[0])
+      .join('');
+  });
+};
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+createUsernames(accounts);
+console.log(accounts);
